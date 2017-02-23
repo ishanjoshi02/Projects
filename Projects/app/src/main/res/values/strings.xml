@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Projects</string>
+    <string name="FirstRun">First Run</string>
+    <string name="isFirstRun">is First Run</string>
+    <string name="userDetails">userDetails</string>
+    <string name="userName">Name</string>
+    <string name="userEmail">Email</string>
+    <string name="bundleString">Bundle String</string>
+    <string name="parcedData">Sending data to new Activity</string>
+    <string name="StringData">stringData</string>
+    <string name="IntegerData">intData</string>
+    <string name="CallingActivity">This is the Calling Activity</string>
+    <string name="FirebaseStringData">Database Download</string>
+    <string name="FirebaseStringMessage">Message Download</string>
+    <string name="BossString">Boss</string>
+    <string name="taskFireBase">Tasks</string>
+    <string name="projectFirebase">Projects</string>
+    <string name="ProjectParce">Project is being Parced</string>
+    <string-array name="NamesOfTeachers">
+        <item>Ishan Joshi</item>
+        <item>Neeraj Lagwankar</item>
+        <item>Kishlaya Kunj</item>
+        <item>Malhaar Kale</item>
+        <item>Mohan Joshi</item>
+        <item>Chinmay Kulkarni</item>
+    </string-array>
+</resources>

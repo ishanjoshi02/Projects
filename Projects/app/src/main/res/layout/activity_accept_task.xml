@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_accept_task"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.mitcoe.ishanjoshi.projects.AcceptTaskActivity">
+    <TextView
+        android:id="@+id/display_task_name1"
+        style="@style/TextViewStyle" />
+    <TextView
+        android:id="@+id/display_task_description1"
+        style="@style/TextViewStyle" />
+    <TextView
+        android:id="@+id/display_task_parent_project1"
+        style="@style/TextViewStyle" />
+    <TextView
+        style="@style/TextViewStyle"
+        android:id="@+id/display_task_complete_by1" />
+    <ListView
+        android:id="@+id/display_people_working1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </ListView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/accept_task"
+            style="@style/Base.Widget.AppCompat.ButtonBar"
+            android:layout_gravity="start"
+            android:layout_width="wrap_content"
+            android:text="Accept Task"
+            android:layout_height="wrap_content" />
+        <Button
+            style="@style/Base.Widget.AppCompat.ButtonBar"
+            android:id="@+id/decline_task"
+            android:layout_gravity="end"
+            android:layout_width="wrap_content"
+            android:text="Decline Task"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>
