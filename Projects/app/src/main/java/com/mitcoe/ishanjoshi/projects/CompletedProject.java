@@ -5,6 +5,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -30,7 +32,7 @@ public class CompletedProject extends AppCompatActivity {
         actionBar.setHomeButtonEnabled(true);
 
         ProjectDatabase projectDatabase = new ProjectDatabase(this);
-        List<Project> projects
+        final List<Project> projects
                 = projectDatabase.getCompletedProjectList();
         completedProjectsList = new ArrayList<>();
         for (Project project : projects)
@@ -38,6 +40,19 @@ public class CompletedProject extends AppCompatActivity {
         completedProjects = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,completedProjectsList);
         listView = (ListView) findViewById(R.id.show_completed_projects);
         listView.setAdapter(completedProjects);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Project currentProject = projects.get(position);
+                Intent intent = new Intent(CompletedProject.this,ViewProject.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(getString(R.string.bundleString),currentProject);
+                intent.putExtra(getString(R.string.parcedData),bundle);
+                String activityToString = CompletedProject.class.toString();
+                intent.putExtra(getString(R.string.IntentToString),activityToString);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

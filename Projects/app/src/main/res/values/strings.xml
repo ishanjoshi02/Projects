@@ -16,11 +16,14 @@
     <string name="taskFireBase">Tasks</string>
     <string name="projectFirebase">Projects</string>
     <string name="ProjectParce">Project is being Parced</string>
+    <string name="calendarID">12209</string>
+    <string name="IntentToString">IntentString</string>
     <string-array name="NamesOfTeachers">
         <item>Ishan Joshi</item>
         <item>Neeraj Lagwankar</item>
         <item>Kishlaya Kunj</item>
         <item>Malhaar Kale</item>
+        <item>Anjali Madam</item>
         <item>Mohan Joshi</item>
         <item>Chinmay Kulkarni</item>
     </string-array>

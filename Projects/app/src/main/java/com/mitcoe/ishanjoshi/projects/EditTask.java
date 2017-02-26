@@ -23,6 +23,7 @@ import com.mitcoe.ishanjoshi.projects.Utility_Classes.Project;
 import com.mitcoe.ishanjoshi.projects.Utility_Classes.Task;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class EditTask extends AppCompatActivity {
     String[] names;
     String taskParentProject;
     DatePicker datePicker;
+//todo complete this
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,11 +78,11 @@ public class EditTask extends AppCompatActivity {
         });
 
         names = getResources().getStringArray(R.array.NamesOfTeachers);
-
-        for (String name : names) {
+        List<String> namess = Arrays.asList(names);
+       /* for (String name : namess) {
             notSelectedList.remove(name);
         }
-
+*/
         autoArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,notSelectedList);
         stringArrayAdapter = new MyCustomStringAdapter();
 
@@ -90,6 +92,8 @@ public class EditTask extends AppCompatActivity {
         if (!descriptionOfTask.equals("")) {
             descriptionEditText.setText(descriptionOfTask);
         }
+
+        autoCompleteTextView.setAdapter(autoArrayAdapter);
 
 
 

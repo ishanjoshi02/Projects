@@ -106,6 +106,7 @@ public class CurrentProjects extends AppCompatActivity {
                     Bundle bundle = new Bundle();
                     bundle.putSerializable(getString(R.string.bundleString),project);
                     intent.putExtra(getString(R.string.parcedData),bundle);
+                    intent.putExtra(getString(R.string.IntentToString),CurrentProjects.class.toString());
                     startActivity(intent);
                 }
             });

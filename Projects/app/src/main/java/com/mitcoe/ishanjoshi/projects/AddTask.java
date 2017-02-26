@@ -23,7 +23,6 @@ import com.mitcoe.ishanjoshi.projects.Database_Handlers.TaskDatabase;
 import com.mitcoe.ishanjoshi.projects.Utility_Classes.Project;
 import com.mitcoe.ishanjoshi.projects.Utility_Classes.Task;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -55,7 +54,7 @@ public class AddTask extends AppCompatActivity {
         datePicker = (DatePicker) findViewById(R.id.datePicker);
         initdatePicker();
         autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.AutoCompleteTextView_assign_names) ;
-        autoCompleteTextView.setHint("Add user");
+        autoCompleteTextView.setHint("Assign employee");
         taskDatabase = new TaskDatabase(AddTask.this);
         TeachersList = new ArrayList<>(Arrays.asList(names));
         namesAssigned = new ArrayList<>();
@@ -108,7 +107,7 @@ public class AddTask extends AppCompatActivity {
                     int year = datePicker.getYear();
                     int month = datePicker.getMonth() + 1;
                     int day = datePicker.getDayOfMonth();
-                    completeBy = day + "/" + month + "/" + year;
+                    completeBy = day + "/" + fillMonthGaps(month) + "/" + year;
                     count--;
                     Task ctask;
                      ctask = new Task(taskName,description,project.getName(),namesAssigned,completeBy);
@@ -137,6 +136,12 @@ public class AddTask extends AppCompatActivity {
                 }
             }
         });
+    }
+    private String fillMonthGaps(int month) {
+        if (month < 10 ) {
+            return "0" + month;
+        }
+        return "" + month;
     }
     private void initdatePicker() {
 

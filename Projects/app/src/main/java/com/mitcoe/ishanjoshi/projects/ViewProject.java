@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -37,32 +38,26 @@ public class ViewProject extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_project);
-
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
-
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra(getString(R.string.parcedData));
         project = (Project) bundle.getSerializable(getString(R.string.bundleString));
-
         projectDescription = (TextView) findViewById(R.id.display_project_description);
-
-
+        String intentString = getIntent().getStringExtra(getString(R.string.IntentToString));
         name = project.getName();
         description = project.getDescription();
-
         projectDescription.setText("Project Description : \n"+description);
         actionBar.setTitle(name);
-
         remove = (Button) findViewById(R.id.remove_current_project);
         remove.setOnClickListener(this);
         completed = (Button) findViewById(R.id.set_current_project_completed);
         completed.setOnClickListener(this);
-
+        if (intentString.equals(CompletedProject.class.toString()))
+            completed.setVisibility(View.INVISIBLE);
         populateList();
         populateListView();
-
     }
 
     @Override
@@ -84,6 +79,16 @@ public class ViewProject extends AppCompatActivity implements View.OnClickListen
         taskListView = (ListView) findViewById(R.id.list_project_tasks);
         taskArrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,taskNames);
         taskListView.setAdapter(taskArrayAdapter);
+        taskListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ViewProject.this,ViewTask.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(getString(R.string.parcedData),taskArrayAdapter.getItem(position));
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -112,34 +117,4 @@ public class ViewProject extends AppCompatActivity implements View.OnClickListen
             }
         }
     }
-
-    private class CustomTaskAdapter extends
-            ArrayAdapter<Task> {
-        public CustomTaskAdapter() {
-            super(ViewProject.this,R.layout.display_single_text,tasks);
-        }
-
-        @NonNull
-        @Override
-        public View getView(final int position, View convertView, ViewGroup parent) {
-            View itemView = convertView;
-            if (itemView == null)
-                itemView = LayoutInflater.from(getContext()).inflate(R.layout.display_single_text,parent,false);
-            TextView textView = (TextView) itemView.findViewById(R.id.display_string);
-            textView.setText(tasks.get(position).getName());
-            textView.setTextSize(16);
-            textView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(ViewProject.this, ViewTask.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable(getString(R.string.bundleString),tasks.get(position));
-                    intent.putExtra(getString(R.string.parcedData),bundle);
-                    startActivity(intent);
-                }
-            });
-            return itemView;
-        }
-    }
-
 }

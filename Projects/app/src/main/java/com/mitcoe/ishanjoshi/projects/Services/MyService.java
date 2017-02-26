@@ -83,7 +83,7 @@ public class MyService extends Service {
                 builder.setContentTitle(getString(R.string.app_name));
                 builder.setAutoCancel(true);
                 builder.setWhen(System.currentTimeMillis());
-                builder.setSmallIcon(R.mipmap.ic_launcher);
+                builder.setSmallIcon(R.drawable.ic_stat_name);
                 builder.setTicker(getString(R.string.app_name));
                 builder.setContentText("You have received a task from " + projectTaskBundle.getBoss());
                 builder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
@@ -109,15 +109,15 @@ public class MyService extends Service {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-            String messaage, appName = getString(R.string.app_name);
+            String message, appName = getString(R.string.app_name);
             for (DataSnapshot child : children) {
-                messaage = child.getValue(String.class);
+                message = child.getValue(String.class);
 
                 builder = new Notification.Builder(MyService.this);
-                builder.setContentText(messaage);
+                builder.setContentText(message);
                 builder.setAutoCancel(true);
                 builder.setContentTitle(appName);
-                builder.setSmallIcon(R.mipmap.ic_launcher);
+                builder.setSmallIcon(R.drawable.ic_stat_name);
                 builder.setTicker(appName);
                 builder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
                 NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
